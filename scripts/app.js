@@ -61,23 +61,33 @@ class Grid {
         }
         console.log(printingLine);
     }
+    HandleClick(x,y){
+        console.log(this.cells[x][y].hasMine ? 'mine' : 'no mine');
+    }
     SetClick(){
-        // HandleClick = (x,y) =>{
-        //     console.log(this.cells[x][y].hasMine ? 'mine' : 'no mine');
-        // }
         for(let i = 0; i < this.size ; i++){
             for (let j = 0; j < this.size ; j++){
                 let idString = `#cell${i}${j}`;
                 let currentCell = document.querySelector(idString);
                 currentCell.addEventListener('click', event => {
-                    console.log(`Event listener added to ${i},${j} `)
-                })
+                    // console.log(`Event listener added to ${i},${j} `)
+                    this.HandleClick(i,j);
+                });
             }
         }
     }
-    
-    
-    
+    GenerateHtml(){
+        let htmlString = "<table>"
+        for(let i = 0 ; i < this.size ; i++){
+            htmlString += "<tr>";
+            for(let j = 0 ; j < this.size ; j++){
+                htmlString += `<td class="cell" id="cell${i}${j}">`;
+            }
+            htmlString += "</tr>";
+            
+        }
+        htmlString += "</table>"
+    }
 }
 
 let myGrid = new Grid(5,10);
