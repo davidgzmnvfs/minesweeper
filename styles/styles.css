@@ -1,0 +1,17 @@
+
+.cell {
+    margin: 0px;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid blue;
+}
+.red{
+    border: 3px solid red;
+}
+.mine{
+    background-color: red;
+}
+.flagged{
+    border: 2px solid purple;
+}
