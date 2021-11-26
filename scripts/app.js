@@ -64,7 +64,7 @@ class Grid {
             for (let j = 0; j < this.size ; j++){
                 let cell =this.cells[i][j];
                 if(cell.hasMine){
-                    this.Reveal(cell);
+                    this.RevealMine(cell);
                 }
             }
         }
@@ -83,18 +83,8 @@ class Grid {
             let x = Math.floor(event.target.dataset.row);
             let y = Math.floor(event.target.dataset.col);
             this.HandleClick(x,y);
-            console.log(x);
         });
-        // for(let i = 0; i < this.size ; i++){
-        //     for (let j = 0; j < this.size ; j++){
-        //         let idString = `#cell${i}cell${j}`;
-        //         let currentCell = document.querySelector(idString);
-        //         currentCell.addEventListener('click', event => {
-        //             let x = Math.floor(event.target.getAttribute("data-row"));
-        //             this.HandleClick(i,j);
-        //         });
-        //     }
-        // }
+
     }
     GenerateHtml(){
         const container = document.querySelector(".container");
@@ -109,42 +99,49 @@ class Grid {
         htmlString += "</table>"
         container.innerHTML = htmlString;
     }
-
+    RevealMine(cell){
+        cell.revealed = true;
+        document.querySelector(`#cell${cell.xPos}cell${cell.yPos}`).classList.add("revealed");
+    }
     Reveal(cell){
         setTimeout(() => {
             if(!cell.revealed){
-                console.log(`revealing cell ${cell.xPos}${cell.yPos}`)
-                cell.revealed = true;
                 document.querySelector(`#cell${cell.xPos}cell${cell.yPos}`).classList.add("revealed");
-                
                 let nextX,nextY;
+                
                 for(let i = -1 ; i <= 1 ; i++){
                     nextX = cell.xPos + i;
                     for(let j = -1 ; j <= 1 ; j++){
                         nextY = cell.yPos + j;
-                        if (
-                            nextY + j > -1 &&
-                            nextY + j < this.size&&
-                            nextX > -1 &&
-                            nextX < this.size
-                            ){
+                        if (nextY > -1 && nextY < this.size){
+                            if(nextX > -1 && nextX < this.size){
                                 let nextCell = this.cells[nextX][nextY];
                                 if(!nextCell.hasMine){
                                     this.Reveal(nextCell);
                                 }
+                            }
                         }
                     }
                 }
+                cell.revealed = true;
             }
         }, 50);
     }
+
+
 }
 
-let myGrid = new Grid(20,5);
-myGrid.Generate();
-myGrid.GenerateHtml();
-myGrid.SetMines();
-myGrid.SetClick();
-myGrid.Print();
-myGrid.Draw();
-console.log("app.js working")
+class App {
+    constructor(){
+        let myGrid = new Grid(10,50);
+        myGrid.Generate();
+        myGrid.GenerateHtml();
+        myGrid.SetMines();
+        myGrid.SetClick();
+        myGrid.Print();
+        myGrid.Draw();
+        }
+}
+document.addEventListener('DOMContentLoaded', event => {
+    const app = new App();
+});
