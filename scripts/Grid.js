@@ -36,7 +36,6 @@ export default class Grid {
         }
     }
     CalculateNeighborMines(cell) {
-        //check surrounding cells for mine
         let nextX, nextY;
         for (let i = -1; i <= 1; i++) {
             nextX = cell.xPos + i;
@@ -52,7 +51,6 @@ export default class Grid {
                 }
             }
         }
-        //increase neighbor mines counter
     }
     Draw() {
         for (let i = 0; i < this.size; i++) {
