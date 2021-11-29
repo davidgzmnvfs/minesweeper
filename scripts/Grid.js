@@ -95,16 +95,18 @@ export default class Grid {
     }
     HandleClick(x, y) {
         const cell = this.cells[x][y];
-        if (cell.hasMine) {
-            this.Lose();
-        } else {
-            this.Reveal(cell);
+        if(!cell.flagged){
+            if (cell.hasMine) {
+                this.Lose();
+            } else {
+                this.Reveal(cell);
+            }
         }
     }
     FlagCell(x,y){
         let cell = this.cells[x][y];
         if(cell.revealed){ return }
-        cell.flagged = true;
+        cell.flagged = !cell.flagged;
         document.querySelector(`#cell${x}cell${y}`).classList.toggle("flagged");
     }
     SetClick() {
