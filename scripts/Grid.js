@@ -145,21 +145,22 @@ export default class Grid {
                         }
                         break;
                     default:
-                        for (let i = -1; i <= 1; i += 2) {
-                            let nextX, nextY;
-                            nextX = cell.xPos + i;
-                            nextY = cell.yPos + i;
-                            if (nextX > -1 && nextX < this.size) {
-                                if (!this.cells[cell.xPos + i][cell.yPos].hasMine) {
-                                    this.Reveal(this.cells[cell.xPos + i][cell.yPos]);
-                                }
-                            }
-                            if (nextY > -1 && nextY < this.size) {
-                                if (!this.cells[cell.xPos][cell.yPos + i].hasMine) {
-                                    this.Reveal(this.cells[cell.xPos][cell.yPos + i]);
-                                }
-                            }
-                        }
+                        // for (let i = -1; i <= 1; i += 2) {
+                        //     let nextX, nextY;
+                        //     nextX = cell.xPos + i;
+                        //     nextY = cell.yPos + i;
+                        //     if (nextX > -1 && nextX < this.size) {
+                        //         if (!this.cells[cell.xPos + i][cell.yPos].hasMine) {
+                        //             this.Reveal(this.cells[cell.xPos + i][cell.yPos]);
+                        //         }
+                        //     }
+                        //     if (nextY > -1 && nextY < this.size) {
+                        //         if (!this.cells[cell.xPos][cell.yPos + i].hasMine) {
+                        //             this.Reveal(this.cells[cell.xPos][cell.yPos + i]);
+                        //         }
+                        //     }
+                        // }
+                        //this.Reveal(cell);
                         break;
                 }
                 cell.revealed = true;

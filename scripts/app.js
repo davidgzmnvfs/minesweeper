@@ -3,7 +3,7 @@ import Grid from "./Grid.js";
 
 class App {
     constructor(){
-        let myGrid = new Grid(15,50);
+        let myGrid = new Grid(10,10);
         myGrid.Generate();
         myGrid.SetMines();
         myGrid.SetNeighborMines();

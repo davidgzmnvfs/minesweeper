@@ -22,7 +22,7 @@ body {
     border-left: 2px solid #b9b7bd;
     background-color: #b9b7bd;
     border-radius: .5rem;
-    /* text-indent: -9999px; */
+    text-indent: -9999px;
 }
 .revealed{
     border-bottom: 2px solid lightgray;
@@ -31,13 +31,16 @@ body {
     border-right: 2px solid #868b8e;
     background-color: #868b8e;
     text-indent: 0px;
+    text-align: center;
+    color: white;
+    font-weight: 900;
 }
 .red{
     border: 3px solid red;
 }
-.mine{
+/* .mine{
     background-color: #98756F;
-}
+} */
 .mine.revealed {
     background-color: #F19E8E;
     
