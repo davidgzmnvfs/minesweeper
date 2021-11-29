@@ -1,8 +1,9 @@
 body {
-    background-color: #eeede7;
+    background-color: #3d4861;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     height: 100%;
     width: 100%;
+    color: white;
 }
 .container{
     display: flex;

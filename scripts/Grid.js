@@ -88,6 +88,7 @@ export default class Grid {
             }
         }
         alert("You lost");
+        this.Restart();
     }
     HandleClick(x, y) {
         const cell = this.cells[x][y];
@@ -120,22 +121,7 @@ export default class Grid {
     }
     Win(){
         alert("You won");
-    }
-    CheckForWin(){
-        // //check amount of cells revealed without mines
-        // let count = 0;
-        // this.cells.forEach(row => {
-        //     row.forEach(cell => {
-        //         if(cell.hasMine == false && cell.revealed == false){
-        //             count++;
-        //         }
-        //     })
-        // });
-        // console.log(count);
-        //if cells revealed = num cells - num mines you won
-        // if(this.cellsRevealed === this.size - this.numMines){
-        //     this.Win();
-        // }
+        this.Restart();
     }
     CountMinesFlagged() {
     let count = 0;
@@ -192,12 +178,24 @@ export default class Grid {
                 }
                 cell.revealed = true;
                 this.cellsRevealed ++;
-                console.log(`cells revealed so far: ${this.cellsRevealed}`);
-                console.log(`Cells needed to win: ${this.size-this.numMines}`)
-                if(this.cellsRevealed == this.size**2-this.numMines){
-                    this.Win();
-                }
+                this.CheckForWin();
             }
         }, 50);
+    }
+
+    CheckForWin() {
+    console.log(`missing cells: ${(this.size**2-this.numMines)-this.cellsRevealed}`);
+        if (this.cellsRevealed === this.size ** 2 - this.numMines) {
+            this.Win();
+        }
+    }
+    Restart(){
+        this.Generate();
+        this.SetMines();
+        this.SetNeighborMines();
+        this.GenerateHtml();
+        this.SetClick();
+        this.Print();
+        this.Draw();
     }
 }
