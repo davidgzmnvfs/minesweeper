@@ -11,6 +11,9 @@ export default class Grid {
         this.cellsRevealed = 0;
     }
     Generate() {
+        this.cellsRevealed = 0;
+        this.cells + [];
+        this.cellsWithMines = [];
         for (let i = 0; i < this.size; i++) {
             this.cells.push([]);
             for (let j = 0; j < this.size; j++) {
