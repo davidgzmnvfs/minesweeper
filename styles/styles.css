@@ -11,24 +11,16 @@ body {
     align-items: center;
 }
 #table{
-    border-spacing: .02rem;
+    border-spacing: .1rem;
 }
 .cell {
     width: 3rem;
     height: 3rem;
-    border-top: 2px solid whitesmoke;
-    border-right: 2px solid whitesmoke; 
-    border-bottom: 2px solid #b9b7bd;
-    border-left: 2px solid #b9b7bd;
     background-color: #b9b7bd;
     border-radius: .5rem;
     text-indent: -9999px;
 }
 .revealed{
-    border-bottom: 2px solid lightgray;
-    border-left: 2px solid lightgray; 
-    border-top: 2px solid #868b8e;
-    border-right: 2px solid #868b8e;
     background-color: #868b8e;
     text-indent: 0px;
     text-align: center;
@@ -38,13 +30,9 @@ body {
 .red{
     border: 3px solid red;
 }
-/* .mine{
-    background-color: #98756F;
-} */
 .mine.revealed {
     background-color: #F19E8E;
-    
 }
 .flagged{
-    border: 1px solid green;
+    background-color: #98756F;
 }

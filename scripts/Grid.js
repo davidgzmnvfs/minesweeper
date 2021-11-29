@@ -95,12 +95,28 @@ export default class Grid {
             this.Reveal(cell);
         }
     }
+    FlagCell(x,y){
+        let cell = this.cells[x][y];
+        if(cell.revealed){ return }
+        cell.flagged = true;
+        console.log(this.cells[x][y]);
+        document.querySelector(`#cell${x}cell${y}`).classList.toggle("flagged");
+    }
     SetClick() {
+        //left click reveal
         document.querySelector("#table").addEventListener('click', event => {
             let x = Math.floor(event.target.dataset.row);
             let y = Math.floor(event.target.dataset.col);
             this.HandleClick(x, y);
         });
+        //right click flag
+        document.querySelector("#table").addEventListener('contextmenu', event => {
+            event.preventDefault();
+            let x = Math.floor(event.target.dataset.row);
+            let y = Math.floor(event.target.dataset.col);
+            this.FlagCell(x, y);
+        });
+        
 
     }
     GenerateHtml() {
