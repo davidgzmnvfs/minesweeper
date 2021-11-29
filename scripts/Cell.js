@@ -5,7 +5,7 @@ export default class Cell {
         this.xPos = xPos;
         this.yPos = yPos;
         this.hasMine = false;
-        this.flagged = false;
+        this.isFlagged = false;
         this.neighborMines = 0;
         this.revealed = false;
     }

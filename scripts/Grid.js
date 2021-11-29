@@ -5,15 +5,18 @@ export const gridsize = '100';
 export default class Grid {
     constructor(size, mines) {
         this.cells = [];
+        this.cellsWithMines = [];
         this.numMines = mines;
         this.size = size;
+        this.cellsRevealed = 0;
     }
     Generate() {
         for (let i = 0; i < this.size; i++) {
             this.cells.push([]);
             for (let j = 0; j < this.size; j++) {
                 this.cells[i].push([]);
-                this.cells[i][j] = new Cell(i, j);
+                let newCell = new Cell(i, j);
+                this.cells[i][j] =newCell;
             }
         }
     }
@@ -76,7 +79,6 @@ export default class Grid {
         console.log(printingLine);
     }
     Lose() {
-        console.log("You lost");
         for (let i = 0; i < this.size; i++) {
             for (let j = 0; j < this.size; j++) {
                 let cell = this.cells[i][j];
@@ -85,9 +87,9 @@ export default class Grid {
                 }
             }
         }
+        alert("You lost");
     }
     HandleClick(x, y) {
-        console.log(this.cells[x][y].hasMine ? 'mine' : 'no mine');
         const cell = this.cells[x][y];
         if (cell.hasMine) {
             this.Lose();
@@ -99,7 +101,6 @@ export default class Grid {
         let cell = this.cells[x][y];
         if(cell.revealed){ return }
         cell.flagged = true;
-        console.log(this.cells[x][y]);
         document.querySelector(`#cell${x}cell${y}`).classList.toggle("flagged");
     }
     SetClick() {
@@ -116,9 +117,39 @@ export default class Grid {
             let y = Math.floor(event.target.dataset.col);
             this.FlagCell(x, y);
         });
-        
-
     }
+    Win(){
+        alert("You won");
+    }
+    CheckForWin(){
+        // //check amount of cells revealed without mines
+        // let count = 0;
+        // this.cells.forEach(row => {
+        //     row.forEach(cell => {
+        //         if(cell.hasMine == false && cell.revealed == false){
+        //             count++;
+        //         }
+        //     })
+        // });
+        // console.log(count);
+        //if cells revealed = num cells - num mines you won
+        // if(this.cellsRevealed === this.size - this.numMines){
+        //     this.Win();
+        // }
+    }
+    CountMinesFlagged() {
+    let count = 0;
+    this.cells.forEach(row => {
+        row.forEach(cell => {
+            if(cell.hasMine && cell.flagged){
+                count++;
+            }
+        })
+    });
+    console.log(count);
+    return count;
+    }
+
     GenerateHtml() {
         const grid = document.querySelector(".grid");
         let htmlString = "<table id=\"table\">";
@@ -143,43 +174,29 @@ export default class Grid {
             if (!cell.revealed) {
                 document.querySelector(`#cell${cell.xPos}cell${cell.yPos}`).classList.add("revealed");
                 let nextX, nextY;
-                switch (cell.neighborMines) {
-                    case 0: //no neighbors
-                        for (let i = -1; i <= 1; i++) {
-                            nextX = cell.xPos + i;
-                            for (let j = -1; j <= 1; j++) {
-                                nextY = cell.yPos + j;
-                                if (nextY > -1 && nextY < this.size) {
-                                    if (nextX > -1 && nextX < this.size) {
-                                        let nextCell = this.cells[nextX][nextY];
-                                        if (!nextCell.hasMine) {
-                                            this.Reveal(nextCell);
-                                        }
+                if(cell.neighborMines == 0){
+                    for (let i = -1; i <= 1; i++) {
+                        nextX = cell.xPos + i;
+                        for (let j = -1; j <= 1; j++) {
+                            nextY = cell.yPos + j;
+                            if (nextY > -1 && nextY < this.size) {
+                                if (nextX > -1 && nextX < this.size) {
+                                    let nextCell = this.cells[nextX][nextY];
+                                    if (!nextCell.hasMine) {
+                                        this.Reveal(nextCell);
                                     }
                                 }
                             }
                         }
-                        break;
-                    default:
-                        // for (let i = -1; i <= 1; i += 2) {
-                        //     let nextX, nextY;
-                        //     nextX = cell.xPos + i;
-                        //     nextY = cell.yPos + i;
-                        //     if (nextX > -1 && nextX < this.size) {
-                        //         if (!this.cells[cell.xPos + i][cell.yPos].hasMine) {
-                        //             this.Reveal(this.cells[cell.xPos + i][cell.yPos]);
-                        //         }
-                        //     }
-                        //     if (nextY > -1 && nextY < this.size) {
-                        //         if (!this.cells[cell.xPos][cell.yPos + i].hasMine) {
-                        //             this.Reveal(this.cells[cell.xPos][cell.yPos + i]);
-                        //         }
-                        //     }
-                        // }
-                        //this.Reveal(cell);
-                        break;
+                    }
                 }
                 cell.revealed = true;
+                this.cellsRevealed ++;
+                console.log(`cells revealed so far: ${this.cellsRevealed}`);
+                console.log(`Cells needed to win: ${this.size-this.numMines}`)
+                if(this.cellsRevealed == this.size**2-this.numMines){
+                    this.Win();
+                }
             }
         }, 50);
     }

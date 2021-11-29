@@ -30,6 +30,9 @@ body {
 .red{
     border: 3px solid red;
 }
+/* .mine {
+    background-color: red;
+} */
 .mine.revealed {
     background-color: #F19E8E;
 }
