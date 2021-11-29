@@ -1,5 +1,5 @@
 body {
-    background-color: #3d4861;
+    background-color: #4b5160;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     height: 100%;
     width: 100%;
@@ -12,7 +12,7 @@ body {
     align-items: center;
 }
 #table{
-    border-spacing: .1rem;
+    border-spacing: .25rem;
 }
 .cell {
     width: 3rem;
