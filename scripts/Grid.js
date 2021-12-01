@@ -23,6 +23,24 @@ export default class Grid {
             }
         }
     }
+    SetCellSize(){
+        console.log("Setting cell size");
+        let side = `${Math.floor(window.innerWidth*((60/this.size)/100))}px`;
+        // let side = `${Math.round((screen.width*.6) / this.size)}px`;
+        console.log(side)
+        for (let i = 0; i < this.size; i++) {
+            for (let j = 0; j < this.size; j++) {
+                let cell = document.querySelector(`#cell${i}cell${j}`)
+
+                cell.style.width = 
+                cell.style.height = 
+                cell.style.maxWidth = 
+                cell.style.maxHeight = 
+                cell.style.minWidth = 
+                cell.style.minHeight = side;
+            }
+        }
+    }
     SetMines() {
         let minesSet = 0;
         while (minesSet < this.numMines) {
@@ -199,8 +217,9 @@ export default class Grid {
         this.SetMines();
         this.SetNeighborMines();
         this.GenerateHtml();
+        this.SetCellSize();
         this.SetClick();
-        this.Print();
+        // this.Print();
         this.Draw();
     }
 }
