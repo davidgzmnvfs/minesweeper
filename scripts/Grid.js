@@ -25,8 +25,7 @@ export default class Grid {
     }
     SetCellSize(){
         console.log("Setting cell size");
-        let side = `${Math.floor(window.innerWidth*((60/this.size)/100))}px`;
-        // let side = `${Math.round((screen.width*.6) / this.size)}px`;
+        let side = `${(Math.floor(window.innerWidth*((60/this.size)/100))*0.9)}px`;
         console.log(side)
         for (let i = 0; i < this.size; i++) {
             for (let j = 0; j < this.size; j++) {
@@ -203,7 +202,7 @@ export default class Grid {
                 this.cellsRevealed ++;
                 this.CheckForWin();
             }
-        }, 50);
+        }, 15);
     }
 
     CheckForWin() {

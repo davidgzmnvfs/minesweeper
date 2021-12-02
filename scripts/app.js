@@ -1,17 +1,10 @@
 'use strict';
 import Grid from "./Grid.js";
-
+const $=(selector)=>document.querySelector(selector);
 class App {
     constructor(){
         this.grid = new Grid(15,15);
-        this.grid.Generate();
-        this.grid.SetMines();
-        this.grid.SetNeighborMines();
-        this.grid.GenerateHtml();
-        this.grid.SetCellSize();
-        this.grid.SetClick();
-        // grid.Print();
-        this.grid.Draw();
+        this.grid.Restart();
 
         document.addEventListener('keydown', event => {
             if(event.key == 'r' || event.key == 'R'){
@@ -21,7 +14,7 @@ class App {
         window.addEventListener('resize',event => {
             this.grid.SetCellSize();
         });
-        }
+    }
 
     get Grid(){
         return this.grid;
