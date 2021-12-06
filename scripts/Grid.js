@@ -25,7 +25,8 @@ export default class Grid {
     }
     SetCellSize(){
         console.log("Setting cell size");
-        let side = `${(Math.floor(window.innerWidth*((60/this.size)/100))*0.9)}px`;
+        // let side = `${(Math.floor(window.innerWidth*((60/this.size)/100))*0.9)}px`;
+    let side = `${document.querySelector(".container").clientHeight/this.size*0.8}px`;
         console.log(side)
         for (let i = 0; i < this.size; i++) {
             for (let j = 0; j < this.size; j++) {
@@ -107,8 +108,9 @@ export default class Grid {
                 }
             }
         }
-        alert("You lost");
-        this.Restart();
+        // alert("You lost");
+        // this.Restart();
+        this.ShowDefeatScreen();
     }
     HandleClick(x, y) {
         const cell = this.cells[x][y];
@@ -142,8 +144,17 @@ export default class Grid {
         });
     }
     Win(){
-        alert("You won");
-        this.Restart();
+        // alert("You won");
+        this.ShowVictoryScreen();
+        // this.Restart();
+    }
+    ShowVictoryScreen(){
+        let winScreen = document.querySelector("#victoryScreen");
+        winScreen.style.visibility = "visible";
+    }
+    ShowDefeatScreen(){
+        let winScreen = document.querySelector("#defeatScreen");
+        winScreen.style.visibility = "visible";
     }
     CountMinesFlagged() {
     let count = 0;

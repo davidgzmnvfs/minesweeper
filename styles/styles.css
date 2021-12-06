@@ -46,3 +46,20 @@ body {
 .flagged{
     background-color: #98756F;
 }
+.winlosescreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    visibility:hidden;
+    flex-direction: column;
+}
+.mine{
+    border: 1px solid red;
+}
