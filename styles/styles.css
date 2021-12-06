@@ -56,10 +56,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 5rem;
+    font-size: 2rem;
     visibility:hidden;
     flex-direction: column;
 }
-.mine{
+/* .mine{
     border: 1px solid red;
-}
+} */
