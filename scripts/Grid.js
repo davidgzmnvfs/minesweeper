@@ -157,13 +157,20 @@ export default class Grid {
         winScreen.style.visibility = "visible";
     }
     ToggleDebugMode(){
+        let debugSign = document.querySelector("#debugModeSign");
+        if(debugSign.style.visibility == 'visible'){
+            debugSign.style.visibility = 'hidden';
+        }else {
+            debugSign.style.visibility = 'visible';
+        }
         for (let i = 0; i < this.size; i++) {
             for (let j = 0; j < this.size; j++) {
                 let idString = `#cell${i}cell${j}`;
                 let currentCell = document.querySelector(idString);
                 currentCell.classList.toggle("debug");
             }
-        }         
+        }  
+
     }
 
     CountMinesFlagged() {

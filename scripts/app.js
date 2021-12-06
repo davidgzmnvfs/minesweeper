@@ -5,7 +5,6 @@ class App {
     constructor(){
         this.grid = new Grid(10,10);
         this.grid.Restart();
-        this.debugMode = false;
 
         document.addEventListener('keydown', event => {
             if(event.key == 'r' || event.key == 'R'){
@@ -15,8 +14,6 @@ class App {
             }
             else if(event.key == 'd' || event.key == 'R'){
                 this.grid.ToggleDebugMode();
-                this.debugMode = !this.debugMode;
-                console.log(this.debugMode);
             }
         })
         window.addEventListener('resize',event => {
