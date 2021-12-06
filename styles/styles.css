@@ -60,6 +60,6 @@ body {
     visibility:hidden;
     flex-direction: column;
 }
-/* .mine{
+.mine.debug{
     border: 1px solid red;
-} */
+} 

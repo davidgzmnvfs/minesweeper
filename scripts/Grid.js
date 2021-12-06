@@ -156,6 +156,16 @@ export default class Grid {
         let winScreen = document.querySelector("#defeatScreen");
         winScreen.style.visibility = "visible";
     }
+    ToggleDebugMode(){
+        for (let i = 0; i < this.size; i++) {
+            for (let j = 0; j < this.size; j++) {
+                let idString = `#cell${i}cell${j}`;
+                let currentCell = document.querySelector(idString);
+                currentCell.classList.toggle("debug");
+            }
+        }         
+    }
+
     CountMinesFlagged() {
     let count = 0;
     this.cells.forEach(row => {
