@@ -108,8 +108,6 @@ export default class Grid {
                 }
             }
         }
-        // alert("You lost");
-        // this.Restart();
         this.ShowDefeatScreen();
     }
     HandleClick(x, y) {
@@ -234,7 +232,6 @@ export default class Grid {
     }
 
     CheckForWin() {
-    console.log(`missing cells: ${(this.size**2-this.numMines)-this.cellsRevealed}`);
         if (this.cellsRevealed === this.size ** 2 - this.numMines) {
             this.Win();
         }
